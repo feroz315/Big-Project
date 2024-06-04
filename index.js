@@ -8,7 +8,7 @@ const PORT = 5000;
 
 app.get("/", (( req,res ) => {
     res.json({
-        message:"server is connect"
+        message:"server is connect with Product"
     })
 }));
 
