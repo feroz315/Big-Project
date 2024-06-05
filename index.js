@@ -2,10 +2,10 @@ import 'dotenv/config';
 // require('dotenv').config();
 
 import express from "express";
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import cors from "cors";
 // import routes from "./Routes/Index.js";
-
+import DATABASE_URL from './DataBase/MongaDB.js';
 
 
 const app = express();
@@ -15,9 +15,9 @@ const PORT = 5000;
 
 
 
-// mongoose.connect(DB_URL)
-// mongoose.connection.on("connected", () => console.log("mongose connect"));
-// mongoose.connection.on("error", (err) => console.log("error mongo", err));
+mongoose.connect(DATABASE_URL)
+mongoose.connection.on("connected", () => console.log("mongose connect"));
+mongoose.connection.on("error", (err) => console.log("error mongo", err));
 
 
 app.use(express.json());
