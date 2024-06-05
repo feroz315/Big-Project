@@ -5,7 +5,7 @@ import express from "express";
 import mongoose from 'mongoose';
 import cors from "cors";
 // import routes from "./Routes/Index.js";
-import DATABASE_URL from './DataBase/MongaDB.js';
+import { DATABASE_URL } from './DataBase/MongaDB.js';
 
 
 const app = express();
