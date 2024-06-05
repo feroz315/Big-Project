@@ -4,7 +4,7 @@ import 'dotenv/config';
 import express from "express";
 import mongoose from 'mongoose';
 import cors from "cors";
-// import routes from "./Routes/Index.js";
+import routes from "./Routes/Index.js";
 import { DATABASE_URL } from './DataBase/MongaDB.js';
 
 
@@ -25,6 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
+//middleware as routes api
+app.use("/api", routes);
 
 
 app.get("/", (( req,res ) => {
