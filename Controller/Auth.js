@@ -10,11 +10,10 @@ const UserSignup = async(req,res) => {
            if (!email || !password || !firstname || !lastname) {
                res.status(400).json({
                    message: "invaild email & password !",
-                   data: null,
-                   
-   
-               })
-               return
+                   data: null, 
+                   status: false,
+            })
+               return;
            }
    
            const emailExit = await UserModal.findOne({email})
@@ -22,7 +21,7 @@ const UserSignup = async(req,res) => {
                res.status(400).json({
                    message: "email is already exit"
                })
-               return
+               return;
            }
    
            const hashPass = await bcrypt.hash(password, 10)
@@ -33,8 +32,9 @@ const UserSignup = async(req,res) => {
    
            const respone = await UserModal.create(obj)
            console.log(respone, "respone")
-           res.status(200).json({
+           res.json({
                message: "user successfully Signup!",
+               status: true,
    
            });
    
