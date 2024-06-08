@@ -29,7 +29,51 @@ const authMiddleware = async(req,res,next) => {
     }
    }
 
+const authtoken = async(req,res,next) => {
+    try {
+        const token = res.cookie?.token
+        console.log("token",token)
+        if(!token){
+            res.json({
+                message: "Please Login...!",
+                error: true,
+                success: false,
+            })
+        }
+        jwt.verify(token, "PAK", function(err,decoded) {
+            console.log(err);
+            console.log(decoded);
+
+            if(err){
+                console.log("error auth", err)
+            }
+            req._id = decoded?._id;
+            
+            next();
+            
+        });
+
+        
+    } catch (err) {
+        res.status(400).json({
+            message: err.message || err,
+            data: [],
+            error: true,
+            success: false
+
+        });
+    }
+}
+
+
 
  export { 
     authMiddleware,
-   };
+    authtoken,
+};
+
+
+
+
+
+// LiaquatMemorialMRH3

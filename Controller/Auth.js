@@ -47,7 +47,7 @@ const UserSignup = async(req,res) => {
    
    }
    
-   const UserLogin = async(req,res) => {
+const UserLogin = async(req,res) => {
        try {
            const { email, password } = req.body;
            if (!email || !password) {
@@ -82,12 +82,19 @@ const UserSignup = async(req,res) => {
                lastname: checkemail.lastname,
            }      
    
-           const token = jwt.sign(obj, "PAK")
-           res.json({
+           const token = jwt.sign(obj, "PAK" , { expiresIn: 60 * 60 * 8 });
+
+           const tokenOption = {
+            httpOnly: true,
+            secure: true,    
+           }
+
+           res.cookie("token",token,tokenOption).status(200)
+           .json({
                message: "Successfully Login",
-               data: checkemail,
-               status: true,
-               token
+               data: token,
+               success: true,
+               error: true,              
            });
    
        } catch (error) {
@@ -96,8 +103,29 @@ const UserSignup = async(req,res) => {
            })
        }
    }
+
+const UserLogOut = async(req,res) => {
+try {
+        res.clearCookie("token")
+        res.json({
+            message: "Logged out successfully",
+            error: false,
+            success: true,
+            data: []
+        })
+} catch (err) {
+    res.json({
+        message : err.message || err,
+        error: true,
+        success: false,
+    })
+ }
+} 
+
+
     
-   export  {
+export  {
        UserSignup,
        UserLogin,
-   }
+       UserLogOut,
+}
