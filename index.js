@@ -4,7 +4,7 @@
 import express from "express";
 import mongoose from 'mongoose';
 import cors from "cors";
-import cookieParser from "cookie-parser";
+// import cookieParser from "cookie-parser";
 import routes from "./Routes/Index.js";
 import { DATABASE_URL } from './DataBase/MongaDB.js';
 
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use(cookieParser());
+// app.use(cookieParser());
 
 //middleware as routes api
 app.use("/api", routes);

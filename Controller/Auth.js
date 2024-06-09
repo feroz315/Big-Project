@@ -47,7 +47,7 @@ const UserSignup = async(req,res) => {
    
    }
    
-const UserLogin = async(req,res) => {
+const UserLogin = async(req,res) => { 
        try {
            const { email, password } = req.body;
            if (!email || !password) {
@@ -82,19 +82,13 @@ const UserLogin = async(req,res) => {
                lastname: checkemail.lastname,
            }      
    
-           const token = jwt.sign(obj, "PAK" , { expiresIn: 60 * 60 * 8 });
+           const token = jwt.sign(obj, "PAK" );
 
-           const tokenOption = {
-            httpOnly: true,
-            secure: true,    
-           }
-
-           res.cookie("token",token,tokenOption).status(200)
-           .json({
-               message: "Successfully Login",
+               res.json({
+               message: "Login Successfully..!",
                data: token,
                success: true,
-               error: true,              
+                             
            });
    
        } catch (error) {
