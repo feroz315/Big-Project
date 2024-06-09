@@ -9,7 +9,7 @@ import { authtoken } from "../Middlewares/Index.js";
 routes.get("/products", getAllProducts,authtoken);
 routes.get("/products/:id", getSingleProduct);
 routes.post("/signup", UserSignup);
-routes.post("/login", UserLogin);
+routes.post("/login", UserLogin,authtoken);
 routes.get("/logout", UserLogOut);
 
 
