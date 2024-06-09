@@ -13,8 +13,10 @@ const authtoken = async(req,res,next) => {
            const isVerify = jwt.verify(token, "PRIVATEKEY");
            console.log("isVerify", isVerify);
            
-           if(isVerify){
-               next()
+           if(!isVerify) return res.redirect("/signup")
+
+           else if(isVerify){
+            next()
            }
        }else{
            res.json({
