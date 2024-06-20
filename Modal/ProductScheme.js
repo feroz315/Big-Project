@@ -12,7 +12,7 @@ const ProductScheme = new mongoose.Schema({
         type: Number,
         required: [ true, "Price must be provided"]
     },
-        timestamps : true    
+        
 });
 
 
