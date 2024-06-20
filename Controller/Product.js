@@ -1,4 +1,5 @@
 import ProductItem from "../Modal/ProductScheme.js";
+
 import { products } from "../Products.js";
 
 
@@ -46,5 +47,32 @@ const getSingleProduct = (req,res) => {
 
 
 
+const getProductDetails = async(req,res) => {
+try {
+    const { productId } = req.body;
+    
+    const product = await ProductItem.findById(productId) 
+        
+    res.json({
+        data: product,
+        message: "Ok",
+        success: true,
+        error:  false
+    });
 
-export { getAllProducts, getSingleProduct };
+
+
+} catch (error) {
+    res.json({
+        message : err?.message  || err,
+        error : true,
+        success : false
+    })
+
+}
+}
+
+
+
+
+export { getAllProducts, getSingleProduct, getProductDetails };

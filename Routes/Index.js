@@ -1,6 +1,6 @@
 import express from "express";
 const routes = express.Router();
-import { getAllProducts,getSingleProduct } from "../Controller/Product.js";
+import { getAllProducts,getProductDetails } from "../Controller/Product.js";
 import { UserSignup,UserLogin,UserLogOut } from "../Controller/Auth.js";
 import { authtoken } from "../Middlewares/Index.js";
 // import { products } from "../Products.js";
@@ -8,7 +8,7 @@ import { authtoken } from "../Middlewares/Index.js";
 
 
 routes.get("/products", getAllProducts,authtoken);
-routes.get("/products/:id", getSingleProduct);
+routes.get("/products/:id", getProductDetails);
 
 
 // routes.get("/products/:id", async (req, res) => {
