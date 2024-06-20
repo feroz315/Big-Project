@@ -8,7 +8,7 @@ import { authtoken } from "../Middlewares/Index.js";
 
 
 routes.get("/products", getAllProducts,authtoken);
-routes.get("/products/:id", getProductDetails);
+routes.get("/products-details", getProductDetails);
 
 
 // routes.get("/products/:id", async (req, res) => {
