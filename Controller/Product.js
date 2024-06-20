@@ -36,13 +36,13 @@ const getAllProducts = async (req, res) => {
 };
 
 
+
 const getSingleProduct = (req,res) => {
     const singleProduct = products.find((product) => product.id == +req.params.id) 
     console.log("singleproduct",singleProduct)
     res.send(singleProduct)
 
 }
-
 
 
 
